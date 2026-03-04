@@ -11,8 +11,6 @@ const requiredEnv = [
 ];
 
 const loadEnv = () => {
-  // Use override:true so dotenv always forces values from .env into process.env,
-  // even if they were previously set (e.g., from a prior dotenv.config() call).
   dotenv.config({ override: true });
 
   const missingEnv = requiredEnv.filter((key) => !process.env[key]);

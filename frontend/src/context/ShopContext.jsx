@@ -29,9 +29,9 @@ const ShopContextProvider = ({ children }) => {
 
   const authHeaders = token
     ? {
-        "Content-Type": "application/json",
-        token,
-      }
+      "Content-Type": "application/json",
+      token,
+    }
     : { "Content-Type": "application/json" };
 
   const fetchProducts = async () => {
@@ -301,7 +301,6 @@ const ShopContextProvider = ({ children }) => {
 
   useEffect(() => {
     fetchProducts();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -315,7 +314,6 @@ const ShopContextProvider = ({ children }) => {
     } else {
       localStorage.removeItem("token");
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [token]);
 
   const value = {

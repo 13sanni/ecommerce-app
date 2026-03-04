@@ -39,11 +39,8 @@ const PlaceOrder = () => {
     const result = await placeOrder(formData, method);
     setIsSubmitting(false);
 
-    console.log("[PlaceOrder] placeOrder result:", result);
-
     if (result.success) {
       if (result.redirectUrl) {
-        console.log("[PlaceOrder] Redirecting to Stripe:", result.redirectUrl);
         window.location.href = result.redirectUrl;
         return;
       }
@@ -163,9 +160,8 @@ const PlaceOrder = () => {
               className="flex items-center gap-3 border p-2 px-3 cursor-pointer"
             >
               <p
-                className={`min-w-3.5 h-3.5 border rounded-full ${
-                  method === "stripe" ? "bg-green-400" : ""
-                }`}
+                className={`min-w-3.5 h-3.5 border rounded-full ${method === "stripe" ? "bg-green-400" : ""
+                  }`}
               />
               <img className="h-5 mx-4" src={assets.stripe_logo} alt="Stripe" />
             </div>
@@ -174,9 +170,8 @@ const PlaceOrder = () => {
               className="flex items-center gap-3 border p-2 px-3 cursor-pointer"
             >
               <p
-                className={`min-w-3.5 h-3.5 border rounded-full ${
-                  method === "cod" ? "bg-green-400" : ""
-                }`}
+                className={`min-w-3.5 h-3.5 border rounded-full ${method === "cod" ? "bg-green-400" : ""
+                  }`}
               />
               <p className="text-gray-500 text-sm font-medium mx-4">Cash on delivery</p>
             </div>

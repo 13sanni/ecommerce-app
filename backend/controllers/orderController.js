@@ -86,8 +86,6 @@ const placeOrder = async (req, res) => {
 
     if (normalizedPaymentMethod === "stripe") {
       const env = loadEnv();
-      console.log("[Order] Stripe payment selected, creating session...");
-      console.log("[Order] Stripe key configured:", !!env.stripeSecretKey, "| key prefix:", env.stripeSecretKey?.slice(0, 12));
 
       const order = await orderModel.create({
         userId: req.userId,
@@ -109,8 +107,6 @@ const placeOrder = async (req, res) => {
           userId: String(req.userId),
         },
       });
-
-      console.log("[Order] Stripe session created:", session.id, "| URL:", session.url?.slice(0, 60));
 
       await orderModel.findByIdAndUpdate(order._id, {
         stripeSessionId: session.id,
@@ -144,7 +140,7 @@ const placeOrder = async (req, res) => {
       orderId: order._id,
     });
   } catch (error) {
-    console.error("[Order] placeOrder error:", error.message, error.stack?.split("\n")[1]);
+    console.error(error);
     return res.status(500).json({
       success: false,
       message: error.message || "Unable to place order",
